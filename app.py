@@ -1,9 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_UPI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
@@ -29,9 +30,30 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/user/<string:name>/<int:id>')
-def user(name, id):
-    return 'User page:' + name + "-" + str(id)
+@app.route('/posts')
+def posts():
+    articles = Article.query.order_by(Article.date).all()
+    return render_template("posts.html", articles=articles)
+
+
+@app.route('/create-article', methods=['POST', 'GET'])
+def create_article():
+    if request.method == "POST":
+        title = request.form['title']
+        intro = request.form['title']
+        text = request.form['title']
+
+        article = Article(title=title, intro=intro, text=text)
+
+        try:
+            db.session.add(article)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "При добавлении статьи произошла ошибка"
+
+    else:
+        return render_template("create-article.html")
 
 
 if __name__ == '__main__':
