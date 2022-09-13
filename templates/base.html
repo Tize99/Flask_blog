@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<header class="site-header sticky-top py-1">
+  <nav class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2 d-none d-md-inline-block" href="/">Home</a>
+    <a class="py-2 d-none d-md-inline-block" href="/about">About</a>
+    <a class="py-2 d-none d-md-inline-block" href="/user/<string:name>/<int:id>">User</a>
+  </nav>
+</header>
+{% block body %}{% endblock %}
+
+</body>
+</html>
