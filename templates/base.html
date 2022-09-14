@@ -9,14 +9,18 @@
 <body>
 <header class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
-    <a class="py-2 d-none d-md-inline-block" href="/">Главная</a>
-    <a class="py-2 d-none d-md-inline-block" href="/home">Home</a>
-    <a class="py-2 d-none d-md-inline-block" href="/about">About</a>
-    <a class="py-2 d-none d-md-inline-block" href="/create-article">Добавить статью</a>
-    <a class="py-2 d-none d-md-inline-block" href="/posts">Статьи</a>
+
+
+    <a class="btn btn-primary" href="/">Главная</a>
+
+    <a class="btn btn-primary" href="/about">About</a>
+    <a class="btn btn-warning" href="/create-article">Добавить статью</a>
+    <a class="btn btn-warning" href="/posts">Статьи</a>
+
   </nav>
 </header>
 {% block body %}{% endblock %}
+
 <footer class="container py-5">
   <div class="row">
     <div class="col-6 col-md">
